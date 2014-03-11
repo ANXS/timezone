@@ -30,6 +30,7 @@
     name=ntp
     state=restarted
     enabled=yes
+  ignore_errors: True
 
 - name: Timezone | Configure the ntp servers (/etc/ntp.conf)
   template:
