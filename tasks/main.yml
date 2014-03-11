@@ -20,6 +20,7 @@
     state=present
   with_items:
     - tzdata
+    - ntp
 
 - name: Timezone | Update the hardware clock
   command: dpkg-reconfigure -f noninteractive tzdata
