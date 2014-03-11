@@ -1,4 +1,4 @@
-## Ansibles - timezone
+## Ansibles - timezone [![Build Status](https://travis-ci.org/Ansibles/timezone.png)](https://travis-ci.org/Ansibles/timezone)
 
 Set/Update the timezone
 
