@@ -2,23 +2,24 @@
 
 - name: Timezone | Symlink the correct localtime - pt.1
   file:
-    path=/etc/localtime
-    state=absent
+    path: /etc/localtime
+    state: absent
 
 - name: Timezone | Symlink the correct localtime - pt.2 (/etc/localtime)
   file:
-    src=/usr/share/zoneinfo/{{ timezone_zone }}
-    dest=/etc/localtime
-    state=link
-    owner=root
-    group=root
-    mode=0644
+    src: /usr/share/zoneinfo/{{timezone_zone}}
+    dest: /etc/localtime
+    state: link
+    owner: root
+    group: root
+    mode: 0644
 
 - name: Timezone | Make sure the dependencies are installed
   apt:
-    pkg="{{ item }}"
-    state=present
+    pkg: "{{item}}"
+    state: present
   with_items:
+    - ntp
     - tzdata
     - ntpdate
 
@@ -27,14 +28,14 @@
 
 - name: Timezone | Make sure ntpd is running and enabled
   service:
-    name=ntp
-    state=restarted
-    enabled=yes
-  ignore_errors: True
+    name: ntp
+    state: restarted
+    enabled: yes
+  ignore_errors: yes
 
 - name: Timezone | Configure the ntp servers (/etc/ntp.conf)
   template:
-    src=etc_ntp.conf.j2
-    dest=/etc/ntp.conf
+    src: etc_ntp.conf.j2
+    dest: /etc/ntp.conf
   notify:
     - restart ntp
