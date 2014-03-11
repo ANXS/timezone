@@ -15,7 +15,7 @@
     mode=0644
 
 - name: Timezone | Make sure the dependencies are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - tzdata
     - ntp
