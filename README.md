@@ -3,6 +3,10 @@
 Ansible role for setting/updating the timezone
 
 
+#### Requirements & Dependencies
+- Tested on Ansible 1.3 or higher.
+
+
 #### Variables
 
 ```yaml
