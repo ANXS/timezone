@@ -1,11 +1,11 @@
 # file: timezone/tasks/main.yml
 
-- name: Timezone | Symlink the correct localtime - pt.1
+- name: ntp | timezone | Symlink the correct localtime - pt.1
   file:
     path: /etc/localtime
     state: absent
 
-- name: Timezone | Symlink the correct localtime - pt.2 (/etc/localtime)
+- name: ntp | timezone | Symlink the correct localtime - pt.2 (/etc/localtime)
   file:
     src: /usr/share/zoneinfo/{{timezone_zone}}
     dest: /etc/localtime
@@ -14,28 +14,10 @@
     group: root
     mode: 0644
 
-- name: Timezone | Make sure the dependencies are installed
+- name: ntp | timezone | Make sure tzdata is installed
   apt:
-    pkg: "{{item}}"
+    pkg: tzdata
     state: present
-  with_items:
-    - ntp
-    - tzdata
-    - ntpdate
 
-- name: Timezone | Update the hardware clock
+- name: ntp | timezone | Update the hardware clock
   command: dpkg-reconfigure -f noninteractive tzdata
-
-- name: Timezone | Make sure ntpd is running and enabled
-  service:
-    name: ntp
-    state: restarted
-    enabled: yes
-  ignore_errors: yes
-
-- name: Timezone | Configure the ntp servers (/etc/ntp.conf)
-  template:
-    src: etc_ntp.conf.j2
-    dest: /etc/ntp.conf
-  notify:
-    - restart ntp
