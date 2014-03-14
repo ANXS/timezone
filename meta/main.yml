@@ -2,6 +2,7 @@
 
 galaxy_info:
   author: pjan vandaele
+  company: Ansibles
   description: set/update the timezone
   min_ansible_version: 1.2
   license: MIT
