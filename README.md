@@ -1,4 +1,4 @@
-## Ansibles - timezone [![Build Status](https://travis-ci.org/Ansibles/timezone.png)](https://travis-ci.org/Ansibles/timezone)
+## ANXS - timezone [![Build Status](https://travis-ci.org/ANXS/timezone.png)](https://travis-ci.org/ANXS/timezone)
 
 Ansible role for setting/updating the timezone
 
@@ -23,4 +23,4 @@ Licensed under the MIT License. See the LICENSE file for details.
 
 #### Feedback, bug-reports, requests, ...
 
-Are [welcome](https://github.com/ansibles/timezone/issues)!
+Are [welcome](https://github.com/ANXS/timezone/issues)!
