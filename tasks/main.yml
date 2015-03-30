@@ -1,10 +1,23 @@
 # file: timezone/tasks/main.yml
 
+- name: ntp | timezone | Make sure tzdata is installed
+  apt:
+    pkg: tzdata
+    state: present
+
+# This will always write /etc/localtime
+- name: ntp | timezone | Update the hardware clock
+  command: dpkg-reconfigure -f noninteractive tzdata
+  changed_when: false
+
+# So we always need to delete it
 - name: ntp | timezone | Symlink the correct localtime - pt.1
   file:
     path: /etc/localtime
     state: absent
+  changed_when: false
 
+# Then re-symlink it to the correct location
 - name: ntp | timezone | Symlink the correct localtime - pt.2 (/etc/localtime)
   file:
     src: /usr/share/zoneinfo/{{timezone_zone}}
@@ -13,11 +26,4 @@
     owner: root
     group: root
     mode: 0644
-
-- name: ntp | timezone | Make sure tzdata is installed
-  apt:
-    pkg: tzdata
-    state: present
-
-- name: ntp | timezone | Update the hardware clock
-  command: dpkg-reconfigure -f noninteractive tzdata
+  changed_when: false
